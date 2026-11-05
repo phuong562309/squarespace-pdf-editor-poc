@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Create PDF annotation pages in your browser, preview the real PDF and download without an email form.">
+  <title>PDF Studio · Annotate & download</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="vendor/pdf-lib.min.js"></script>
+  <script defer src="vendor/fontkit.umd.min.js"></script>
+  <script defer src="pdf-core.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header class="topbar"><div class="brand"><span class="logo">PDF</span><div><h1>PDF Studio <span class="tag">PROOF OF CONCEPT</span></h1><p>Annotate. Preview. Download.</p></div></div><a class="header-link" href="embed.html">Squarespace embed ↗</a></header>
+  <main>
+    <div class="intro"><div><p class="eyebrow">YOUR DOCUMENT, READY TO GO</p><h2>A few edits. A real PDF.</h2><p>Add a note, a status and your typed sign-off. No email form.</p></div><span class="local-badge"><span></span> PDF processing in your browser</span></div>
+    <div class="workspace">
+      <div class="controls">
+        <section class="card"><div class="section-heading"><span class="step">1</span><h3>Choose your document</h3></div><p class="hint">Start a new document or add annotations to an existing PDF.</p>
+          <label class="upload" for="pdfUploadInput"><strong>＋ Choose a PDF</strong><span>Up to 20 MiB · 1–200 pages · unencrypted</span><input id="pdfUploadInput" type="file" accept=".pdf,application/pdf"></label>
+          <div class="source-row"><span id="docBadge">New document</span><button id="btnResetSample" type="button" class="text-button">Use new document</button></div>
+          <p id="sourceStatus" class="hint" role="status"></p>
+          <label for="annotationMode">Annotation placement</label><select id="annotationMode"><option value="append">Append annotation pages (recommended)</option><option value="overlay">Overlay first page</option></select>
+          <p id="modeHelp" class="hint">Appended pages keep imported page content visually unchanged. Existing text is not edited.</p>
+        </section>
+        <section class="card"><div class="section-heading"><span class="step">2</span><h3>Make it yours</h3></div>
+          <label for="inputHeadline">Header / client name</label><input id="inputHeadline" maxlength="300" value="Prepared for: Client Portal">
+          <label for="inputBodyNote">Annotation / note</label><textarea id="inputBodyNote" maxlength="8000" rows="4">Approved for release. Please review the details below and keep this document for your records.</textarea>
+          <div class="field-grid"><div><label for="selectStamp">Status stamp</label><select id="selectStamp"><option>APPROVED</option><option>DRAFT COPY</option><option>CONFIDENTIAL</option><option value="NONE">No stamp</option></select></div><div><label for="selectColor">Accent color</label><select id="selectColor"><option value="emerald">Emerald</option><option value="blue">Royal blue</option><option value="rose">Crimson</option><option value="slate">Charcoal</option></select></div></div>
+          <label for="inputSignature">Typed sign-off</label><input id="inputSignature" maxlength="200" value="Alex Morgan — Project Lead"><p class="hint">Printed text only. This does not create a cryptographic digital signature.</p>
+          <div class="items-heading"><label>Line items <span id="itemCountLabel">2 / 30</span></label><button id="btnAddItem" type="button" class="text-button">＋ Add line</button></div><div id="customItemsList"></div>
+        </section>
+        <section class="export-card"><p class="eyebrow">NO EMAIL REQUIRED</p><h3>Your PDF. One click away.</h3><p>The preview and download use the exact same PDF bytes.</p><a id="btnDownloadPdf" class="download disabled" aria-disabled="true" download="annotated-document.pdf">Download PDF ↓</a><p id="hashReceiptBox" class="receipt">SHA-256: waiting for a current PDF.</p></section>
+      </div>
+      <section class="preview-card" aria-label="Generated PDF preview"><div class="preview-heading"><div><span class="preview-dot"></span><strong>Actual PDF preview</strong></div><span id="pageMetaLabel">Preparing…</span></div><p id="status" role="status" aria-live="polite">Loading local PDF tools…</p><div class="preview-stage"><iframe id="pdfPreview" title="Generated PDF — same bytes as download" hidden></iframe><div id="previewEmpty"><div class="paper-icon">PDF</div><h3>Your document appears here</h3><p>Preparing the actual PDF, including all pages.</p></div></div><div class="preview-footer"><p>Browser PDF viewers vary. If the preview is blank, open or download the PDF.</p><a id="openPdf" class="disabled" aria-disabled="true" target="_blank" rel="noopener">Open PDF ↗</a></div></section>
+    </div>
+    <footer>DejaVu Sans supports many Latin, Greek and Cyrillic characters, including Vietnamese. Unsupported characters are rejected before export. PDFs are processed locally; this app does not upload document bytes. <a href="README.md">Scope & limitations</a></footer>
+  </main>
+  <noscript><p class="noscript">Enable JavaScript to create and preview PDF files.</p></noscript>
+</body>
+</html>
